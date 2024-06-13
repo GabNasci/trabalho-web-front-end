@@ -6,8 +6,8 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 const loginSchema = z.object({
-    email: z.string().email({ message: "E-mail inválido!" }),
-    password: z.string().min(6, { message: "A senha deve conter no mínimo 6 caractéres!" }),
+    email: z.string().email({ message: "invalid email" }),
+    password: z.string().min(6, { message: "must be at least 6 characters long" }),
 })
 
 const Login = () => {
@@ -32,12 +32,12 @@ const Login = () => {
                     <div>
                         <label htmlFor="email">e-mail: </label>
                         <input type="text" {...register('email')} id="email" placeholder="write your email correctly." />
-                        {errors.email && <p className={styles.error}>{errors.email.message}</p>}
+                        {errors.email && <p className={styles.error}>{errors.email.message} <img src="imgs/exclamation.svg" alt="" /> </p>}
                     </div>
                     <div>
                         <label htmlFor="password">password: </label>
                         <input type="password" {...register('password')} id="password" placeholder="try to remember your password." />
-                        {errors.password && <p className={styles.error}>{errors.password.message}</p>}
+                        {errors.password && <p className={styles.error}>{errors.password.message} <img src="imgs/exclamation.svg" alt="" /> </p>}
                     </div>
                     <div className={styles.card_footer}>
                         <button type="submit" className={styles.btn} ><img src="imgs/confirm.svg" alt="" /></button>
