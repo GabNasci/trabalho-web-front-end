@@ -5,13 +5,31 @@ import { useNavigate } from "react-router-dom";
 
 const List = () => {
     const [characters, setcharacter] = useState([])
+    const [loading, setLoading] = useState([])
+    const [input, setInput] = useState()
     const [page, setPage] = useState('https://rickandmortyapi.com/api/character?page=1')
     //use context biblioteca zustand
-    const navigate = useNavigate()
 
-    const handleNavigate = (id) => {
-        return navigate(`/character/${id}`)
+    const onInputChange = (e) => {
+        setInput(e.target.value)
+        getCharacter()
     }
+
+    const getCharacter = async () => {
+        try {
+            setLoading(true)
+            const response = await axios.get(`https://rickandmortyapi.com/api/character/?name=${input}`)
+            console.log(response.data)
+            setcharacter(response.data.results)
+            
+        } catch (error) {
+            console.log(error)
+
+        } finally {
+            setLoading(false)
+        }
+    }
+
 
     const getCharacters = useCallback(async (pagina) => {
         try {
@@ -22,13 +40,19 @@ const List = () => {
         }
     }, [page])
 
+    useEffect(() => {
+        getCharacters(page);
+
+    }, [getCharacters])
+
+
     const nextPage = async () => {
         try {
             const response = await axios.get(page)
             const nextResponse = await axios.get(response.data.info.next)
             setcharacter(nextResponse.data.results)
             setPage(response.data.info.next)
-            
+
         } catch (error) {
             console.log(error)
         }
@@ -45,14 +69,21 @@ const List = () => {
         }
     }
 
-    useEffect(() => {
-        getCharacters(page);
+    const handleNavigate = (id) => {
+        return navigate(`/character/${id}`)
+    }
 
-    }, [getCharacters])
+    const navigate = useNavigate()
 
     return (
         <div className={styles.container}>
             <h1>Lista de Personagens</h1>
+            <div>
+                <label htmlFor="search">Busca:</label>
+                <input type="search" id="search" value={input} onChange={onInputChange}/>
+                
+            </div>
+            
             <section className={styles.container_cards}>
                 {characters.map((item, key) => {
                     return (
