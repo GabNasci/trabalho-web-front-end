@@ -6,12 +6,11 @@ import { useNavigate } from "react-router-dom";
 const List = () => {
     const [characters, setcharacter] = useState([])
     const [page, setPage] = useState('https://rickandmortyapi.com/api/character?page=1')
-
+    //use context biblioteca zustand
     const navigate = useNavigate()
 
     const handleNavigate = (id) => {
-        setPoha(page)
-        navigate(`/character/${id}`)
+        return navigate(`/character/${id}`)
     }
 
     const getCharacters = useCallback(async (pagina) => {
