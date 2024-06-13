@@ -1,0 +1,69 @@
+.container {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: var(--cor-de-fundo);
+
+    & .card {
+        background-color: var(--cor-clara);
+        padding: 20px;
+        border-radius: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+
+        & .card_header {
+            display: flex;
+            justify-content: center;
+            & h1 {
+                margin: 0;
+            }
+
+
+        }
+
+        & .card_body {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            
+            & div {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+                & input {
+                    border: 0;
+                    padding: 8px;
+                    border-radius: 4px;
+                    width: 400px;
+                    box-shadow: 0 0 2px black;
+                }
+                & .error {
+                    color: red;
+                    font-size: 12px;
+                }
+
+            }
+
+        }
+
+        & .card_footer {
+            & .btn {
+                color: var(--cor-clara);
+                background-color: brown;
+                font-weight: bold;
+                border: 0;  
+                border-radius: 8px;
+                padding: 16px;
+                width: 100%;
+                text-decoration: none;
+            }
+
+
+        }
+
+    }
+
+}

@@ -1,8 +1,7 @@
-import './App.css'
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import Login from './components/Login';
-import List from './components/List';
-import Pokemon from './components/Pokemon';
+import Login from './components/Login/Login';
+import List from './components/ListCharacters/List';
+import Character from "./components/Character/Character";
 
 function App() {
 
@@ -12,12 +11,12 @@ function App() {
       element: <Login></Login>
     },
     {
-      path: '/v1/list',
+      path: '/list',
       element: <List></List>
     },
     {
-      path: '/v1/pokemon',
-      element: <Pokemon></Pokemon>
+      path: '/character/:id',
+      element: <Character></Character>
     }
 
   ])
