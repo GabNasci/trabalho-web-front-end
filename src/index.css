@@ -1,7 +1,9 @@
 :root {
-  --fonte-principal: 'Inter';
+  --fonte-principal: "Inconsolata", monospace;
   --cor-de-fundo: #1E1E1E;
   --cor-clara: white;
+  --azul-interface: #13D9C4;
+  --azul-transparent: #138572ab;
 
 }
 
