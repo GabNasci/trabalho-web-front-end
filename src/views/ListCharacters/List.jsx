@@ -2,6 +2,7 @@ import { useState, useCallback, useEffect } from "react";
 import styles from "./List.module.css"
 import axios from "axios"
 import { useNavigate } from "react-router-dom";
+import Card from "../../components/Card/Card";
 
 const List = () => {
     const [characters, setcharacter] = useState([])
@@ -28,7 +29,7 @@ const List = () => {
             const nextResponse = await axios.get(response.data.info.next)
             setcharacter(nextResponse.data.results)
             setPage(response.data.info.next)
-            
+
         } catch (error) {
             console.log(error)
         }
@@ -47,45 +48,31 @@ const List = () => {
 
     useEffect(() => {
         getCharacters(page);
-
     }, [getCharacters])
+
 
     return (
         <div className={styles.container}>
-            <h1>Lista de Personagens</h1>
+            <header className={styles.header}>
+
+                <div>
+                    <h1>Target list</h1>
+                </div>
+
+            </header>
             <section className={styles.container_cards}>
                 {characters.map((item, key) => {
                     return (
-                        <div onClick={() => handleNavigate(item.id)} className={styles.card} key={key}>
-                            <h3>{item.name}</h3>
-                            <div className={styles.card_body}>
-                                <img src={item.image} alt="" />
-                                <div className={styles.card_section}>
-                                    <div className={styles.infos}>
-                                        <div>
-                                            <p>Gênero:</p>
-                                            <p>{item.gender}</p>
-                                        </div>
-                                        <div>
-                                            <p>Espécie:</p>
-                                            <p>{item.species}</p>
-                                        </div>
-                                    </div>
-                                    <div className={styles.status}>
-                                        <p>Status:</p>
-                                        <p>{item.status}</p>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
+                       <Card item={item} handleNavigate={handleNavigate} key={key} />
                     )
                 })}
             </section>
-            <div>
-                <button onClick={prevPage}>Prev</button>
-                <button onClick={nextPage}>Next</button>
-            </div>
+            <footer className={styles.footer}>
+                <div>
+                    <button onClick={prevPage}>Prev</button>
+                    <button onClick={nextPage}>Next</button>
+                </div>
+            </footer>
         </div>
     );
 }
