@@ -11,7 +11,7 @@ function App() {
       element: <Login></Login>
     },
     {
-      path: '/list',
+      path: '/targetlist',
       element: <List></List>
     },
     {

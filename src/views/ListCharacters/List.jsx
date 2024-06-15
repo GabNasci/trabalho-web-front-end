@@ -6,6 +6,8 @@ import Card from "../../components/Card/Card";
 
 const List = () => {
     const [characters, setcharacter] = useState([])
+    const [numberPages, setNumberPages] = useState()
+    const [numberCurrentPage, setNumberCurrentPage] = useState(1)
     const [page, setPage] = useState('https://rickandmortyapi.com/api/character?page=1')
     //use context biblioteca zustand
     const navigate = useNavigate()
@@ -14,10 +16,15 @@ const List = () => {
         return navigate(`/character/${id}`)
     }
 
+    const pickPageNumber = (pagina) => parseInt(pagina.slice(-2)) > 9 ? pagina.slice(-2) : pagina.slice(-1)
+
+
     const getCharacters = useCallback(async (pagina) => {
         try {
             const response = await axios.get(pagina)
             setcharacter(response.data.results)
+            setNumberPages(response.data.info.pages)
+            setNumberCurrentPage(pickPageNumber(pagina))
         } catch (error) {
             console.log(error)
         }
@@ -26,6 +33,7 @@ const List = () => {
     const nextPage = async () => {
         try {
             const response = await axios.get(page)
+            if (!response.data.info.next) return
             const nextResponse = await axios.get(response.data.info.next)
             setcharacter(nextResponse.data.results)
             setPage(response.data.info.next)
@@ -38,6 +46,7 @@ const List = () => {
     const prevPage = async () => {
         try {
             const response = await axios.get(page)
+            if (!response.data.info.prev) return
             const prevResponse = await axios.get(response.data.info.prev)
             setcharacter(prevResponse.data.results)
             setPage(response.data.info.prev)
@@ -53,26 +62,25 @@ const List = () => {
 
     return (
         <div className={styles.container}>
-            <header className={styles.header}>
-
-                <div>
-                    <h1>Target list</h1>
+            <section className={styles.container_body}>
+                <div className={styles.container_header}>
+                    <h1>target list_</h1>
+                </div>
+                <section className={styles.container_cards}>
+                    {characters.map((item, key) => {
+                        return (
+                            <Card item={item} handleNavigate={handleNavigate} key={key} />
+                        )
+                    })}
+                </section>
+                <div className={styles.container_footer}>
+                    <button style={numberCurrentPage == 1 ? {opacity: "0"} : {opacity: "100%"}} className={styles.btn} onClick={prevPage}><img src="imgs/prev.svg" alt="" /></button>
+                    <p>{`${numberCurrentPage}/${numberPages}`}</p>
+                    <button style={numberCurrentPage == numberPages ? {opacity: "0"} : {opacity: "100%"}} className={styles.btn} onClick={nextPage}><img src="imgs/confirm.svg" alt="" /></button>
                 </div>
 
-            </header>
-            <section className={styles.container_cards}>
-                {characters.map((item, key) => {
-                    return (
-                       <Card item={item} handleNavigate={handleNavigate} key={key} />
-                    )
-                })}
             </section>
-            <footer className={styles.footer}>
-                <div>
-                    <button onClick={prevPage}>Prev</button>
-                    <button onClick={nextPage}>Next</button>
-                </div>
-            </footer>
+
         </div>
     );
 }

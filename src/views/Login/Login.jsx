@@ -20,7 +20,7 @@ const Login = () => {
     const navigate = useNavigate()
 
     const handleForm = (data) => {
-        if (data) navigate('/list')
+        if (data) navigate('/targetlist')
     }
 
     return (

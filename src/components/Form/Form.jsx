@@ -4,7 +4,7 @@ const Form = ({register, errors, handleSubmit, handleForm}) => {
     return (
         <form onSubmit={handleSubmit(handleForm)} className={styles.card}>
             <div className={styles.card_header}>
-                <h1>login</h1>
+                <h1>login_</h1>
             </div>
             <div className={styles.card_body}>
                 <div>

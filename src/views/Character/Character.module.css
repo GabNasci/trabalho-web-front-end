@@ -1,6 +1,5 @@
 .container {
     margin: 0;
-    align-items: center;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -15,7 +14,6 @@
         flex-flow: column;
         gap: 16px;
         justify-content: center;
-        align-items: center;
         background-color: var(--azul-transparent);
         border: 4px solid var(--azul-interface);
         box-shadow: 0 0 15px var(--azul-interface);
@@ -25,47 +23,21 @@
         & .container_header {
             font-size: 24px;
             color: var(--azul-interface);
+            display: flex;
+            justify-content: center;
         }
 
 
-        & .container_cards {
+        & .container_infos {
             height: 80vh;
             display: flex;
-            flex-flow: wrap row;
             gap: 16px;
-            justify-content: center;
             overflow-y: scroll;
             background-color: var(--azul-transparent);
             border: 4px solid var(--azul-interface);
             box-shadow: 0 0 10px var(--azul-interface);
             border-radius: 8px;
             padding: 20px 0;
-        }
-
-        & .container_footer {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-            font-size: 24px;
-            align-items: center;
-            color: var(--azul-interface);
-
-            & p {
-                background-color: var(--azul-transparent);
-                border: 4px solid var(--azul-interface);
-                box-shadow: 0 0 10px var(--azul-interface);
-                border-radius: 8px;
-                padding: 4px 8px;
-            }
-
-            & .btn {
-                background-color: transparent;
-                border: 0;
-
-                & img {
-                    width: 48px;
-                }
-            }
         }
 
     }
