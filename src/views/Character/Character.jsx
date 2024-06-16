@@ -30,8 +30,26 @@ const Character = () => {
                     <h1>target info_</h1>
                 </div>
                 <section className={styles.container_infos}>
-                    <h1>{character.name}</h1>
                     <img src={character.image} alt="" />
+                    <div className={styles.card_section}>
+                        <div className={styles.infos}>
+                            <div>
+                                <h1>{character.name}</h1>
+                            </div>
+                            <div>
+                                <p>Gender:</p>
+                                <p>{character.gender}</p>
+                            </div>
+                            <div>
+                                <p>Species:</p>
+                                <p>{character.species}</p>
+                            </div>
+                        </div>
+                        <div className={styles.status}>
+                            <p>Status:</p>
+                            <p>{character.status}</p>
+                        </div>
+                    </div>
                 </section>
             </section>
 

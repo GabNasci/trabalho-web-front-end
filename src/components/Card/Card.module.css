@@ -1,14 +1,32 @@
 .card {
     display: flex;
     flex-direction: column;
-    width: 24rem;
-    background-color: white;
+    background-color: #097469;
+    border: 2px solid var(--azul-interface);
+    box-shadow: 0 0 10px var(--azul-interface);
+    border-radius: 8px;
+    color: var(--azul-interface);
+
+    &:hover {
+        cursor: pointer;
+        background-color: aqua;
+        transition: 0.8s;
+        color: black;
+    }
+
+    & .card_header {
+        padding: 8px;
+        border-bottom: 2px solid var(--azul-interface);
+    }
 
     & .card_body {
         display: flex;
+        gap: 8px;
+        padding: 8px;
 
         & img {
             width: 100px;
+            border-radius: 4px;
         }
 
         & .card_section {
@@ -20,10 +38,22 @@
             & .infos {
                 display: flex;
                 gap: 8px;
+
+                & div :nth-child(1) {
+                    font-weight: bold;
+                }
+                
+
             }
 
             & .status {
                 display: flex;
+                gap: 4px;
+
+                & :nth-child(1) {
+                    font-weight: bold;
+                }
+
             }
         }
 
