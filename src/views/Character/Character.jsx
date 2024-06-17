@@ -1,0 +1,86 @@
+import { useCallback, useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+import styles from "./Character.module.css"
+
+const Character = () => {
+    const { id } = useParams()
+
+    const [character, setCharacter] = useState({})
+    const [location, setLocation] = useState({})
+
+
+
+    const getCharacter = useCallback(async () => {
+        try {
+            const response = await axios.get(`https://rickandmortyapi.com/api/character/${id}`)
+            setCharacter(response.data)
+
+        } catch (error) {
+            console.log(error)
+        }
+    }, [])
+
+    const getLocation = useCallback(async () => {
+        if (character.location?.url) {
+            try {
+                const response = await axios.get(character.location.url);
+                setLocation(response.data);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+    }, [character.location?.url]);
+
+    useEffect(() => {
+        getCharacter();
+
+    }, [getCharacter])
+
+    useEffect(() => {
+        if (character.location?.url) {
+            getLocation();
+        }
+    }, [character, getLocation]);
+
+    return (
+        <div className={styles.container}>
+            <section className={styles.container_body}>
+                <div className={styles.container_header}>
+                    <h1>target info_</h1>
+                </div>
+                <section className={styles.container_infos}>
+                    <img src={character.image} alt="" />
+                    <div className={styles.infos_section}>
+                        <div>
+                            <h1>{character.name}</h1>
+                        </div>
+                        <div>
+                            <p>Gender:</p>
+                            <p>{character.gender}</p>
+                        </div>
+                        <div>
+                            <p>Species:</p>
+                            <p>{character.species}</p>
+                        </div>
+                        <div>
+                            <p>Status:</p>
+                            <p>{character.status}</p>
+                        </div>
+                        <div>
+                            <p>Location:</p>
+                            <p>{location.name + ` - ${location.type}`}</p>
+                        </div>
+                        <div>
+                            <p>Dimension:</p>
+                            <p>{location.dimension}</p>
+                        </div>
+                    </div>
+                </section>
+            </section>
+
+        </div>
+    );
+}
+
+export default Character;

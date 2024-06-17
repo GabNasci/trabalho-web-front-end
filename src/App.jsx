@@ -1,10 +1,29 @@
-import './App.css'
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import Login from './views/Login/Login';
+import List from './views/ListCharacters/List';
+import Character from "./views/Character/Character";
 
 function App() {
 
+  const router = createBrowserRouter([
+    {
+      path: '/',
+      element: <Login></Login>
+    },
+    {
+      path: '/targetlist',
+      element: <List></List>
+    },
+    {
+      path: '/character/:id',
+      element: <Character></Character>
+    }
+
+  ])
+
   return (
     <>
-      <h1>Hello World!</h1>
+      <RouterProvider router={router}></RouterProvider>
     </>
   )
 }

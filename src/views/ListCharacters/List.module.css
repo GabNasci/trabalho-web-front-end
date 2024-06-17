@@ -1,0 +1,93 @@
+.container {
+    margin: 0;
+    align-items: center;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: var(--fonte-principal);
+
+    & .container_body {
+        width: 80%;
+        height: 80vh;
+        display: flex;
+        flex-flow: column;
+        gap: 16px;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--azul-transparent);
+        border: 4px solid var(--azul-interface);
+        box-shadow: 0 0 15px var(--azul-interface);
+        border-radius: 8px;
+        padding: 16px 40px;
+
+        & .container_header {
+            font-size: 20px;
+            color: var(--azul-interface);
+        }
+
+
+        & .container_cards {
+            height: 80vh;
+            display: flex;
+            flex-flow: wrap row;
+            gap: 16px;
+            justify-content: center;
+            overflow-y: scroll;
+            background-color: var(--azul-transparent);
+            border: 4px solid var(--azul-interface);
+            box-shadow: 0 0 10px var(--azul-interface);
+            border-radius: 8px;
+            padding: 20px 0;
+        }
+
+        & .container_footer {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            font-size: 20px;
+            align-items: center;
+            color: var(--azul-interface);
+
+            & p {
+                background-color: var(--azul-transparent);
+                border: 4px solid var(--azul-interface);
+                box-shadow: 0 0 10px var(--azul-interface);
+                border-radius: 8px;
+                padding: 4px 8px;
+            }
+
+            & .btn {
+                background-color: transparent;
+                border: 0;
+
+                & img {
+                    width: 42px;
+                }
+
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+        }
+
+    }
+
+}
+
+.container_cards::-webkit-scrollbar {
+    background: var(--azul-transparent);
+    border-radius: 4px;
+}
+
+
+.container_cards::-webkit-scrollbar-thumb {
+    background: var(--azul-interface);
+    border-radius: 4px;
+}
+
+.container_cards::-webkit-scrollbar-thumb:hover {
+    cursor: grab;
+}
+
