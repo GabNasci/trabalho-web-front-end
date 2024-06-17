@@ -1,6 +1,10 @@
 import styles from "./Form.module.css"
 
 const Form = ({register, errors, handleSubmit, handleForm}) => {
+
+    const errorsExists = Object.keys(errors).length > 0
+
+
     return (
         <form onSubmit={handleSubmit(handleForm)} className={styles.card}>
             <div className={styles.card_header}>
@@ -18,7 +22,7 @@ const Form = ({register, errors, handleSubmit, handleForm}) => {
                     {errors.password && <p className={styles.error}>{errors.password.message} <img src="imgs/exclamation.svg" alt="" /> </p>}
                 </div>
                 <div className={styles.card_footer}>
-                    <button type="submit" className={styles.btn} ><img src="imgs/confirm.svg" alt="" /></button>
+                    <button type="submit" disabled={errorsExists} className={styles.btn} ><img src="imgs/confirm.svg" alt="" /></button>
                 </div>
             </div>
 

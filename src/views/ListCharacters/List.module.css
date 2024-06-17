@@ -75,3 +75,19 @@
     }
 
 }
+
+.container_cards::-webkit-scrollbar {
+    background: var(--azul-transparent);
+    border-radius: 4px;
+}
+
+
+.container_cards::-webkit-scrollbar-thumb {
+    background: var(--azul-interface);
+    border-radius: 4px;
+}
+
+.container_cards::-webkit-scrollbar-thumb:hover {
+    cursor: grab;
+}
+

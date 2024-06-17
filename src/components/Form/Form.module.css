@@ -72,6 +72,11 @@
             flex-direction: row;
             justify-content: end;
 
+            & .btn:disabled {
+                cursor: not-allowed;
+                opacity: 50%;
+            }
+
             & .btn {
                 color: var(--cor-clara);
                 background-color: var(--azul-transparent);
@@ -84,6 +89,8 @@
                 display: flex;
                 justify-content: center;
 
+                
+
 
             }
 
@@ -93,3 +100,4 @@
     }
 
 }
+
