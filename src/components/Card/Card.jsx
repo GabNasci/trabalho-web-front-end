@@ -1,6 +1,19 @@
 import styles from "./Card.module.css"
 
 const Card = ({ item, handleNavigate }) => {
+
+    const stringController = (string) => {
+        let word = ''
+        if (string.lenght >= 8) {
+            word = string.slice(0, 5) + '...'
+        }else {
+            word = string
+        }
+        return word
+    
+    }
+
+
     return (
         <div onClick={() => handleNavigate(item.id)} className={styles.card}>
             <div className={styles.card_header}>

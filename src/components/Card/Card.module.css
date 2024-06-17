@@ -17,6 +17,13 @@
     & .card_header {
         padding: 8px;
         border-bottom: 2px solid var(--azul-interface);
+
+        & h1 {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 236px;
+        }
     }
 
     & .card_body {
@@ -42,7 +49,14 @@
                 & div :nth-child(1) {
                     font-weight: bold;
                 }
-                
+
+                & div :nth-child(2) {
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    max-width: 56px;
+                }
+
 
             }
 

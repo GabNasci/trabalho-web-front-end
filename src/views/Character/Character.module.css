@@ -34,7 +34,6 @@
             height: 80vh;
             display: flex;
             gap: 16px;
-            overflow-y: scroll;
             background-color: var(--azul-transparent);
             border: 4px solid var(--azul-interface);
             box-shadow: 0 0 10px var(--azul-interface);
@@ -43,6 +42,23 @@
 
             & img {
                 border-radius: 4px;
+            }
+
+            & .infos_section {
+                display: flex;
+                flex-direction: column;
+                gap: 16px;
+                font-size: large;
+                color: var(--azul-interface);
+
+                & h1 {
+                    font-size: x-large;
+                    font-weight: bold;
+                }
+
+                & div :nth-child(1) {
+                    font-weight: bold;
+                }
             }
 
         }

@@ -7,21 +7,41 @@ const Character = () => {
     const { id } = useParams()
 
     const [character, setCharacter] = useState({})
+    const [location, setLocation] = useState({})
+
 
 
     const getCharacter = useCallback(async () => {
         try {
             const response = await axios.get(`https://rickandmortyapi.com/api/character/${id}`)
             setCharacter(response.data)
+
         } catch (error) {
             console.log(error)
         }
     }, [])
 
+    const getLocation = useCallback(async () => {
+        if (character.location?.url) {
+            try {
+                const response = await axios.get(character.location.url);
+                setLocation(response.data);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+    }, [character.location?.url]);
+
     useEffect(() => {
         getCharacter();
 
-    }, [])
+    }, [getCharacter])
+
+    useEffect(() => {
+        if (character.location?.url) {
+            getLocation();
+        }
+    }, [character, getLocation]);
 
     return (
         <div className={styles.container}>
@@ -31,23 +51,29 @@ const Character = () => {
                 </div>
                 <section className={styles.container_infos}>
                     <img src={character.image} alt="" />
-                    <div className={styles.card_section}>
-                        <div className={styles.infos}>
-                            <div>
-                                <h1>{character.name}</h1>
-                            </div>
-                            <div>
-                                <p>Gender:</p>
-                                <p>{character.gender}</p>
-                            </div>
-                            <div>
-                                <p>Species:</p>
-                                <p>{character.species}</p>
-                            </div>
+                    <div className={styles.infos_section}>
+                        <div>
+                            <h1>{character.name}</h1>
                         </div>
-                        <div className={styles.status}>
+                        <div>
+                            <p>Gender:</p>
+                            <p>{character.gender}</p>
+                        </div>
+                        <div>
+                            <p>Species:</p>
+                            <p>{character.species}</p>
+                        </div>
+                        <div>
                             <p>Status:</p>
                             <p>{character.status}</p>
+                        </div>
+                        <div>
+                            <p>Location:</p>
+                            <p>{location.name + ` - ${location.type}`}</p>
+                        </div>
+                        <div>
+                            <p>Dimension:</p>
+                            <p>{location.dimension}</p>
                         </div>
                     </div>
                 </section>
