@@ -67,9 +67,9 @@ const List = () => {
                     <h1>target list_</h1>
                 </div>
                 <section className={styles.container_cards}>
-                    {characters.map((item, key) => {
+                    {characters.map((item) => {
                         return (
-                            <Card item={item} handleNavigate={handleNavigate} key={key} />
+                            <Card item={item} handleNavigate={handleNavigate} key={item.id} />
                         )
                     })}
                 </section>
