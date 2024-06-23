@@ -1,16 +1,17 @@
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useContext } from "react";
 import styles from "./List.module.css"
 import axios from "axios"
 import { useNavigate } from "react-router-dom";
 import Card from "../../components/Card/Card";
+import { PageContext } from "../Context.jsx";
 
 const List = () => {
     const [characters, setcharacter] = useState([])
     const [numberPages, setNumberPages] = useState()
     const [numberCurrentPage, setNumberCurrentPage] = useState(1)
-    const [page, setPage] = useState('https://rickandmortyapi.com/api/character?page=1')
-    //use context biblioteca zustand
+    const {page, setPage} = useContext(PageContext)
     const navigate = useNavigate()
+    
 
     const handleNavigate = (id) => {
         return navigate(`/character/${id}`)
@@ -57,6 +58,8 @@ const List = () => {
 
     useEffect(() => {
         getCharacters(page);
+        console.log("context:" + page)
+        console.log("context page:" + PageContext)
     }, [getCharacters])
 
 
