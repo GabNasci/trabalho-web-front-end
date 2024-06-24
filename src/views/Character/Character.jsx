@@ -2,6 +2,7 @@ import { useCallback, useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import styles from "./Character.module.css"
+import { Skeleton } from "antd";
 
 const Character = () => {
     const { id } = useParams()
@@ -15,7 +16,10 @@ const Character = () => {
     const getCharacter = useCallback(async () => {
         try {
             const response = await axios.get(`https://rickandmortyapi.com/api/character/${id}`)
-            setCharacter(response.data)
+            setTimeout(() => {
+                setCharacter(response.data)
+
+            }, 500)
 
         } catch (error) {
             console.log(error)
@@ -26,7 +30,10 @@ const Character = () => {
         if (character.location?.url) {
             try {
                 const response = await axios.get(character.location.url);
-                setLocation(response.data);
+                setTimeout(() => {
+                    setLocation(response.data)
+    
+                }, 1000)
             } catch (error) {
                 console.log(error);
             }
@@ -53,32 +60,47 @@ const Character = () => {
                     <div></div>
                 </div>
                 <section className={styles.container_infos}>
-                    <img src={character.image} alt="" />
-                    <div className={styles.infos_section}>
-                        <div>
-                            <h1>{character.name}</h1>
+                    {!character.image ?
+                        <Skeleton.Input 
+                            active size={350} 
+                        /> :
+                        <img src={character.image} alt="" />
+                    }
+                    <Skeleton 
+                        loading={!character.name || !location.name} 
+                        paragraph={{ rows: 10, width: [120, 80, 120, 80, 120, 80, 120, 300, 120, 80] }} 
+                        active
+                    >
+                        <div className={styles.infos_section}>
+                            <div>
+                                <h1>{character.name}</h1>
+                            </div>
+                            <div>
+                                <p>Gender:</p>
+                                <p>{character.gender}</p>
+                            </div>
+                            <div>
+                                <p>Species:</p>
+                                <p>{character.species}</p>
+                            </div>
+                            <div>
+                                <p>Status:</p>
+                                <p>{character.status}</p>
+                            </div>
+                            <div>
+                                <p>Location:</p>
+                                <p>{location.name + ` - ${location.type}`}</p>
+                            </div>
+                            <div>
+                                <p>Dimension:</p>
+                                <p>{location.dimension}</p>
+                            </div>
                         </div>
-                        <div>
-                            <p>Gender:</p>
-                            <p>{character.gender}</p>
-                        </div>
-                        <div>
-                            <p>Species:</p>
-                            <p>{character.species}</p>
-                        </div>
-                        <div>
-                            <p>Status:</p>
-                            <p>{character.status}</p>
-                        </div>
-                        <div>
-                            <p>Location:</p>
-                            <p>{location.name + ` - ${location.type}`}</p>
-                        </div>
-                        <div>
-                            <p>Dimension:</p>
-                            <p>{location.dimension}</p>
-                        </div>
-                    </div>
+                    </Skeleton>
+
+
+
+
                 </section>
             </section>
 

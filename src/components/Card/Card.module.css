@@ -6,6 +6,7 @@
     box-shadow: 0 0 10px var(--azul-interface);
     border-radius: 8px;
     color: var(--azul-interface);
+    max-height: 156px;
 
     &:hover {
         cursor: pointer;

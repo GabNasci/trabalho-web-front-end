@@ -4,14 +4,15 @@ import axios from "axios"
 import { useNavigate } from "react-router-dom";
 import Card from "../../components/Card/Card";
 import { PageContext } from "../Context.jsx";
+import { Skeleton } from "antd";
 
 const List = () => {
     const [characters, setcharacter] = useState([])
     const [numberPages, setNumberPages] = useState()
     const [numberCurrentPage, setNumberCurrentPage] = useState(1)
-    const {page, setPage} = useContext(PageContext)
+    const { page, setPage } = useContext(PageContext)
     const navigate = useNavigate()
-    
+
 
     const handleNavigate = (id) => {
         return navigate(`/character/${id}`)
@@ -75,9 +76,9 @@ const List = () => {
                     })}
                 </section>
                 <div className={styles.container_footer}>
-                    <button style={numberCurrentPage == 1 ? {opacity: "0"} : {opacity: "100%"}} className={styles.btn} onClick={prevPage}><img src="imgs/prev.svg" alt="" /></button>
+                    <button style={numberCurrentPage == 1 ? { opacity: "0" } : { opacity: "100%" }} className={styles.btn} onClick={prevPage}><img src="imgs/prev.svg" alt="" /></button>
                     <p>{`${numberCurrentPage}/${numberPages}`}</p>
-                    <button style={numberCurrentPage == numberPages ? {opacity: "0"} : {opacity: "100%"}} className={styles.btn} onClick={nextPage}><img src="imgs/confirm.svg" alt="" /></button>
+                    <button style={numberCurrentPage == numberPages ? { opacity: "0" } : { opacity: "100%" }} className={styles.btn} onClick={nextPage}><img src="imgs/confirm.svg" alt="" /></button>
                 </div>
 
             </section>

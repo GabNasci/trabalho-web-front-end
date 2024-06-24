@@ -29,9 +29,9 @@
 
 
         & .container_cards {
-            height: 80vh;
+            height: 100%;
             display: flex;
-            flex-flow: wrap row;
+            flex-flow: row wrap;
             gap: 16px;
             justify-content: center;
             overflow-y: scroll;
