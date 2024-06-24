@@ -1,5 +1,5 @@
 import { useCallback, useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import styles from "./Character.module.css"
 
@@ -9,6 +9,7 @@ const Character = () => {
     const [character, setCharacter] = useState({})
     const [location, setLocation] = useState({})
 
+    const navigate = useNavigate()
 
 
     const getCharacter = useCallback(async () => {
@@ -47,7 +48,9 @@ const Character = () => {
         <div className={styles.container}>
             <section className={styles.container_body}>
                 <div className={styles.container_header}>
+                    <button onClick={() => navigate(-1)} className={styles.btn}><img src="../imgs/prev.svg" alt="" /></button>
                     <h1>target info_</h1>
+                    <div></div>
                 </div>
                 <section className={styles.container_infos}>
                     <img src={character.image} alt="" />

@@ -58,8 +58,6 @@ const List = () => {
 
     useEffect(() => {
         getCharacters(page);
-        console.log("context:" + page)
-        console.log("context page:" + PageContext)
     }, [getCharacters])
 
 
