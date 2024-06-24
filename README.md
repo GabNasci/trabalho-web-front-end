@@ -1,8 +1,17 @@
-# React + Vite
+# Projeto de Gabriel Nascimento
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Segue abaixo prints das telas do projeto como solicitado:
 
-Currently, two official plugins are available:
+## Tela de Login
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+![Tela de Login](/public/imgs/Captura%20de%20tela%202024-06-23%20235320.png)
+
+## Página de Lista
+
+![Página de Lista](/public//imgs/Captura%20de%20tela%202024-06-23%20235235.png)
+
+## Página de Item
+
+![Página de Item](/public/imgs/Captura%20de%20tela%202024-06-23%20235301.png)
+
+
