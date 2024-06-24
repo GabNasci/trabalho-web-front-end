@@ -1,5 +1,10 @@
 # Projeto de Gabriel Nascimento
 
+Para rodar o projeto localmente execute o seguinte comando no terminal:
+```bash
+npm run dev
+```
+
 Segue abaixo prints das telas do projeto como solicitado:
 
 ## Tela de Login
