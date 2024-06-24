@@ -53,18 +53,19 @@ const Character = () => {
                     <div></div>
                 </div>
                 <section className={styles.container_infos}>
-                    {!character.name || !location.name ?
+                    {!character.name ?
                         <Skeleton.Input
                             active size={350}
                         /> :
                         <img src={character.image} alt="" />
                     }
-                    <Skeleton
-                        loading={!character.name || !location.name}
-                        paragraph={{ rows: 10, width: [120, 80, 120, 80, 120, 80, 120, 300, 120, 80] }}
-                        active
-                    >
-                        <div className={styles.infos_section}>
+                    <div className={styles.infos_section}>
+                        <Skeleton
+                            loading={!character.name}
+                            title={{ width: 200 }}
+                            paragraph={{ rows: 6, width: [120, 80, 120, 80, 120, 80] }}
+                            active
+                        >
                             <div>
                                 <h1>{character.name}</h1>
                             </div>
@@ -80,16 +81,24 @@ const Character = () => {
                                 <p>Status:</p>
                                 <p>{character.status}</p>
                             </div>
+                        </Skeleton>
+                        <Skeleton
+                            loading={!location.name && location.url}
+                            title={false}
+                            paragraph={{ rows: 4, width: [80, 200, 80, 120] }}
+                            active
+                        >
+
                             <div>
                                 <p>Location:</p>
                                 <p>{location.name + ` - ${location.type}`}</p>
                             </div>
                             <div>
                                 <p>Dimension:</p>
-                                <p>{location.dimension}</p>
+                                <p>{location.dimension ? location.dimension : `undefined`}</p>
                             </div>
-                        </div>
-                    </Skeleton>
+                        </Skeleton>
+                    </div>
 
 
 

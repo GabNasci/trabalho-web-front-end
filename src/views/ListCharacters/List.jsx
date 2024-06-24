@@ -4,7 +4,7 @@ import axios from "axios"
 import { useNavigate } from "react-router-dom";
 import CharacterCard from "../../components/Card/CharacterCard.jsx";
 import { PageContext } from "../Context.jsx";
-import { Pagination, Skeleton } from "antd";
+import { Pagination } from "antd";
 
 const List = () => {
     const [characters, setcharacter] = useState([])
@@ -23,13 +23,10 @@ const List = () => {
 
     const getCharacters = useCallback(async (pagina) => {
         try {
-            const response = await axios.get(pagina)
-            setTimeout(() => {
-                setcharacter(response.data.results)
-
-            }, 2000)
+            const response = await axios.get(`https://rickandmortyapi.com/api/character?page=${pagina}`)
+            setcharacter(response.data.results)
             setNumberPages(response.data.info.pages)
-            setNumberCurrentPage(pickPageNumber(pagina))
+            setNumberCurrentPage(page)
         } catch (error) {
             console.log(error)
         }
@@ -39,7 +36,8 @@ const List = () => {
         try {
             const response = await axios.get(`https://rickandmortyapi.com/api/character?page=${pagina}`)
             setcharacter(response.data.results)
-            setPage(`https://rickandmortyapi.com/api/character?page=${pagina}`)
+            setPage(pagina)
+            setNumberCurrentPage(pagina)
         } catch (error) {
             console.log(error)
         }
@@ -47,6 +45,7 @@ const List = () => {
 
     useEffect(() => {
         getCharacters(page);
+        console.log(page)
     }, [getCharacters])
 
 
@@ -57,16 +56,21 @@ const List = () => {
                     <h1>target list_</h1>
                 </div>
                 <section className={styles.container_cards}>
-                    <Skeleton size={"large"} title={false} paragraph={{rows: 20, height: 10}} loading={!characters.length} active >
-                        {characters.map((item) => (
-                            <CharacterCard item={item} handleNavigate={handleNavigate} key={item.id} />
-                        ))}
-                    </Skeleton>
+                    {characters.map((item) => (
+                        <CharacterCard item={item} handleNavigate={handleNavigate} key={item.id} />
+                    ))}
 
                 </section>
                 <div className={styles.container_footer}>
-                    <Pagination simple className={styles.paginator} showSizeChanger={false} defaultCurrent={numberCurrentPage} total={numberPages * 10} onChange={handlePagination} />
-                </div> 
+                    <Pagination
+                        simple
+                        className={styles.paginator}
+                        showSizeChanger={false}
+                        defaultCurrent={page}
+                        total={numberPages * 10}
+                        onChange={handlePagination}
+                    />
+                </div>
 
             </section>
 
