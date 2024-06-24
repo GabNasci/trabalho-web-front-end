@@ -16,11 +16,7 @@ const Character = () => {
     const getCharacter = useCallback(async () => {
         try {
             const response = await axios.get(`https://rickandmortyapi.com/api/character/${id}`)
-            setTimeout(() => {
-                setCharacter(response.data)
-
-            }, 500)
-
+            setCharacter(response.data)
         } catch (error) {
             console.log(error)
         }
@@ -30,10 +26,7 @@ const Character = () => {
         if (character.location?.url) {
             try {
                 const response = await axios.get(character.location.url);
-                setTimeout(() => {
-                    setLocation(response.data)
-    
-                }, 1000)
+                setLocation(response.data)
             } catch (error) {
                 console.log(error);
             }
