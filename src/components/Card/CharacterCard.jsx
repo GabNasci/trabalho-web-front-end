@@ -1,7 +1,7 @@
-import { Skeleton } from "antd";
+import { Skeleton, Card } from "antd";
 import styles from "./Card.module.css"
 
-const Card = ({ item, handleNavigate }) => {
+const CharacterCard = ({ item, handleNavigate }) => {
 
     return (
         <div onClick={() => handleNavigate(item.id)} className={styles.card}>
@@ -34,4 +34,4 @@ const Card = ({ item, handleNavigate }) => {
     );
 }
 
-export default Card;
+export default CharacterCard;

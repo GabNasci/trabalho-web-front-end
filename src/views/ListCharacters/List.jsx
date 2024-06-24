@@ -2,7 +2,7 @@ import { useState, useCallback, useEffect, useContext } from "react";
 import styles from "./List.module.css"
 import axios from "axios"
 import { useNavigate } from "react-router-dom";
-import Card from "../../components/Card/Card";
+import CharacterCard from "../../components/Card/CharacterCard.jsx";
 import { PageContext } from "../Context.jsx";
 import { Skeleton } from "antd";
 
@@ -24,7 +24,10 @@ const List = () => {
     const getCharacters = useCallback(async (pagina) => {
         try {
             const response = await axios.get(pagina)
-            setcharacter(response.data.results)
+            setTimeout(() => {
+                setcharacter(response.data.results)
+
+            }, 2000)
             setNumberPages(response.data.info.pages)
             setNumberCurrentPage(pickPageNumber(pagina))
         } catch (error) {
@@ -69,11 +72,12 @@ const List = () => {
                     <h1>target list_</h1>
                 </div>
                 <section className={styles.container_cards}>
-                    {characters.map((item) => {
-                        return (
-                            <Card item={item} handleNavigate={handleNavigate} key={item.id} />
-                        )
-                    })}
+                    <Skeleton title={false} paragraph={{rows: 20}} loading={!characters.length} active >
+                        {characters.map((item) => (
+                            <CharacterCard item={item} handleNavigate={handleNavigate} key={item.id} />
+                        ))}
+                    </Skeleton>
+
                 </section>
                 <div className={styles.container_footer}>
                     <button style={numberCurrentPage == 1 ? { opacity: "0" } : { opacity: "100%" }} className={styles.btn} onClick={prevPage}><img src="imgs/prev.svg" alt="" /></button>

@@ -53,15 +53,15 @@ const Character = () => {
                     <div></div>
                 </div>
                 <section className={styles.container_infos}>
-                    {!character.image ?
-                        <Skeleton.Input 
-                            active size={350} 
+                    {!character.name || !location.name ?
+                        <Skeleton.Input
+                            active size={350}
                         /> :
                         <img src={character.image} alt="" />
                     }
-                    <Skeleton 
-                        loading={!character.name || !location.name} 
-                        paragraph={{ rows: 10, width: [120, 80, 120, 80, 120, 80, 120, 300, 120, 80] }} 
+                    <Skeleton
+                        loading={!character.name || !location.name}
+                        paragraph={{ rows: 10, width: [120, 80, 120, 80, 120, 80, 120, 300, 120, 80] }}
                         active
                     >
                         <div className={styles.infos_section}>
