@@ -13,7 +13,7 @@ const loginSchema = z.object({
 
 const Login = () => {
 
-    const { register, handleSubmit, formState: { errors } } = useForm({
+    const { register, handleSubmit, formState: { errors, isValid } } = useForm({
         resolver: zodResolver(loginSchema)
     })
 
@@ -25,7 +25,7 @@ const Login = () => {
 
     return (
         <div className={styles.container}>
-            <Form handleSubmit={handleSubmit} handleForm={handleForm} register={register} errors={errors} />
+            <Form handleSubmit={handleSubmit} handleForm={handleForm} isValid={isValid} register={register} errors={errors} />
 
         </div>
     );

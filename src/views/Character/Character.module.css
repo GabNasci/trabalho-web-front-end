@@ -25,7 +25,22 @@
             font-size: 20px;
             color: var(--azul-interface);
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+
+            & .btn {
+                background-color: transparent;
+                border: 0;
+
+                & img {
+                    width: 42px;
+                }
+
+                &:hover {
+                    cursor: pointer;
+                }
+            }
         }
 
 
@@ -66,3 +81,4 @@
     }
 
 }
+
