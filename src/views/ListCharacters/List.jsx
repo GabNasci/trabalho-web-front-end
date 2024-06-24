@@ -4,7 +4,7 @@ import axios from "axios"
 import { useNavigate } from "react-router-dom";
 import CharacterCard from "../../components/Card/CharacterCard.jsx";
 import { PageContext } from "../Context.jsx";
-import { Skeleton } from "antd";
+import { Pagination, Skeleton } from "antd";
 
 const List = () => {
     const [characters, setcharacter] = useState([])
@@ -35,26 +35,11 @@ const List = () => {
         }
     }, [page])
 
-    const nextPage = async () => {
+    const handlePagination = async (pagina) => {
         try {
-            const response = await axios.get(page)
-            if (!response.data.info.next) return
-            const nextResponse = await axios.get(response.data.info.next)
-            setcharacter(nextResponse.data.results)
-            setPage(response.data.info.next)
-
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
-    const prevPage = async () => {
-        try {
-            const response = await axios.get(page)
-            if (!response.data.info.prev) return
-            const prevResponse = await axios.get(response.data.info.prev)
-            setcharacter(prevResponse.data.results)
-            setPage(response.data.info.prev)
+            const response = await axios.get(`https://rickandmortyapi.com/api/character?page=${pagina}`)
+            setcharacter(response.data.results)
+            setPage(`https://rickandmortyapi.com/api/character?page=${pagina}`)
         } catch (error) {
             console.log(error)
         }
@@ -72,7 +57,7 @@ const List = () => {
                     <h1>target list_</h1>
                 </div>
                 <section className={styles.container_cards}>
-                    <Skeleton title={false} paragraph={{rows: 20}} loading={!characters.length} active >
+                    <Skeleton size={"large"} title={false} paragraph={{rows: 20, height: 10}} loading={!characters.length} active >
                         {characters.map((item) => (
                             <CharacterCard item={item} handleNavigate={handleNavigate} key={item.id} />
                         ))}
@@ -80,10 +65,8 @@ const List = () => {
 
                 </section>
                 <div className={styles.container_footer}>
-                    <button style={numberCurrentPage == 1 ? { opacity: "0" } : { opacity: "100%" }} className={styles.btn} onClick={prevPage}><img src="imgs/prev.svg" alt="" /></button>
-                    <p>{`${numberCurrentPage}/${numberPages}`}</p>
-                    <button style={numberCurrentPage == numberPages ? { opacity: "0" } : { opacity: "100%" }} className={styles.btn} onClick={nextPage}><img src="imgs/confirm.svg" alt="" /></button>
-                </div>
+                    <Pagination simple className={styles.paginator} showSizeChanger={false} defaultCurrent={numberCurrentPage} total={numberPages * 10} onChange={handlePagination} />
+                </div> 
 
             </section>
 
