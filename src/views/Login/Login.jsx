@@ -6,14 +6,16 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Form from "../../components/Form/Form";
 
-const loginSchema = z.object({
-    email: z.string().email({ message: "invalid email" }),
-    password: z.string().min(6, { message: "must be at least 6 characters long" }),
-})
+
 
 const Login = () => {
 
-    const { register, handleSubmit, formState: { errors, isValid } } = useForm({
+    const loginSchema = z.object({
+        email: z.string().email({ message: "invalid email" }),
+        password: z.string().min(6, { message: "must be at least 6 characters long" })
+    })
+
+    const { register, handleSubmit, formState: { errors, isValid, isSubmitted } } = useForm({
         resolver: zodResolver(loginSchema)
     })
 
@@ -25,7 +27,7 @@ const Login = () => {
 
     return (
         <div className={styles.container}>
-            <Form handleSubmit={handleSubmit} handleForm={handleForm} isValid={isValid} register={register} errors={errors} />
+            <Form handleSubmit={handleSubmit} handleForm={handleForm} isValid={isValid} isSubmitted={isSubmitted} register={register} errors={errors} />
 
         </div>
     );

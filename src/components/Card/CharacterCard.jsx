@@ -1,4 +1,3 @@
-import { Skeleton, Card } from "antd";
 import styles from "./Card.module.css"
 
 const CharacterCard = ({ item, handleNavigate }) => {
