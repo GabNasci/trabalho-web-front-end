@@ -1,6 +1,6 @@
 import styles from "./Form.module.css"
 
-const Form = ({register, errors, handleSubmit, handleForm, isValid, isSubmitted}) => {
+const Form = ({register, errors, handleSubmit, handleForm, isValid}) => {
 
 
     return (
@@ -16,7 +16,7 @@ const Form = ({register, errors, handleSubmit, handleForm, isValid, isSubmitted}
                 </div>
                 <div>
                     <label htmlFor="password">password: </label>
-                    <input type="password" {...register('password')} id="password" placeholder="try to remember your password." />
+                    <input type="password" {...register('password')} id="password" placeholder="must be at least 6 characters long" />
                     {errors.password && <p className={styles.error}>{errors.password.message} <img src="imgs/exclamation.svg" alt="" /> </p>}
                 </div>
                 <div className={styles.card_footer}>

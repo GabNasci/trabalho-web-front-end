@@ -15,7 +15,7 @@ const Login = () => {
         password: z.string().min(6, { message: "must be at least 6 characters long" })
     })
 
-    const { register, handleSubmit, formState: { errors, isValid, isSubmitted } } = useForm({
+    const { register, handleSubmit, formState: { errors, isValid } } = useForm({
         resolver: zodResolver(loginSchema)
     })
 
@@ -27,7 +27,7 @@ const Login = () => {
 
     return (
         <div className={styles.container}>
-            <Form handleSubmit={handleSubmit} handleForm={handleForm} isValid={isValid} isSubmitted={isSubmitted} register={register} errors={errors} />
+            <Form handleSubmit={handleSubmit} handleForm={handleForm} isValid={isValid} register={register} errors={errors} />
 
         </div>
     );

@@ -83,7 +83,7 @@ const Character = () => {
                             </div>
                         </Skeleton>
                         <Skeleton
-                            loading={!location.name && location.url}
+                            loading={!location.name}
                             title={false}
                             paragraph={{ rows: 4, width: [80, 200, 80, 120] }}
                             active

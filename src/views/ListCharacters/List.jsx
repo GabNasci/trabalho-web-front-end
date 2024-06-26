@@ -18,8 +18,6 @@ const List = () => {
         return navigate(`/character/${id}`)
     }
 
-    const pickPageNumber = (pagina) => parseInt(pagina.slice(-2)) > 9 ? pagina.slice(-2) : pagina.slice(-1)
-
 
     const getCharacters = useCallback(async (pagina) => {
         try {
@@ -45,7 +43,6 @@ const List = () => {
 
     useEffect(() => {
         getCharacters(page);
-        console.log(page)
     }, [getCharacters])
 
 
@@ -66,8 +63,9 @@ const List = () => {
                         simple
                         className={styles.paginator}
                         showSizeChanger={false}
-                        defaultCurrent={page}
-                        total={numberPages * 10}
+                        defaultCurrent={1}
+                        total={numberPages}
+                        defaultPageSize={1}
                         onChange={handlePagination}
                     />
                 </div>
