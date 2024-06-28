@@ -6,7 +6,7 @@ import { PageContext } from "./views/Context.jsx";
 import { useState } from "react";
 
 function App() {
-  const [page, setPage] = useState('https://rickandmortyapi.com/api/character?page=1')
+  const [page, setPage] = useState(1)
 
   const router = createBrowserRouter([
     {
