@@ -4,7 +4,8 @@ import axios from "axios"
 import { useNavigate } from "react-router-dom";
 import CharacterCard from "../../components/Card/CharacterCard.jsx";
 import { PageContext } from "../Context.jsx";
-import { Pagination } from "antd";
+import { Pagination, Spin } from "antd";
+import { LoadingOutlined } from '@ant-design/icons';
 
 const List = () => {
     const [characters, setcharacter] = useState([])
@@ -53,9 +54,11 @@ const List = () => {
                     <h1>target list_</h1>
                 </div>
                 <section className={styles.container_cards}>
-                    {characters.map((item) => (
-                        <CharacterCard item={item} handleNavigate={handleNavigate} key={item.id} />
-                    ))}
+                    { characters.length ?
+                        characters.map((item) => (
+                            <CharacterCard item={item} handleNavigate={handleNavigate} key={item.id} />
+                        )) : <Spin indicator={<LoadingOutlined style={{ fontSize: 48, color: "#13D9C4" }} spin />} />
+                    }
 
                 </section>
                 <div className={styles.container_footer}>

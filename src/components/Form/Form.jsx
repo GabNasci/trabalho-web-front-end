@@ -2,7 +2,6 @@ import styles from "./Form.module.css"
 
 const Form = ({register, errors, handleSubmit, handleForm, isValid}) => {
 
-
     return (
         <form onSubmit={handleSubmit(handleForm)} className={styles.card}>
             <div className={styles.card_header}>
@@ -21,7 +20,7 @@ const Form = ({register, errors, handleSubmit, handleForm, isValid}) => {
                 </div>
                 <div className={styles.card_footer}>
                     <button type="submit" disabled={!isValid} className={styles.btn} ><img src="imgs/confirm.svg" alt="" /></button>
-                </div>
+                </div>  
             </div>
 
         </form>
